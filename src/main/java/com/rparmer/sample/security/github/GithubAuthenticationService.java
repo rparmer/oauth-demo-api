@@ -45,7 +45,7 @@ public class GithubAuthenticationService {
                 HttpMethod.GET, authEntity, GithubUser.class);
         GithubUser details = response.getBody();
 
-        if (null == details.getUsername()) return null;
+        if (null == details || null == details.getUsername()) return null;
 
         String[] authParts = StringUtils.split(authorization, " ");
         GithubCredentials credentials = new GithubCredentials(authParts[0], authParts[1]);
@@ -60,15 +60,13 @@ public class GithubAuthenticationService {
 
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<GithubOrganization> orgs) {
         Collection<GrantedAuthority> authorities = new HashSet<>();
-        orgs.forEach(org -> {
-            authorities.add(new SimpleGrantedAuthority(org.getName()));
-        });
+        orgs.forEach(org -> authorities.add(new SimpleGrantedAuthority(org.getName())));
         return authorities;
     }
 
     private Collection<GithubOrganization> getOrganizations(HttpEntity authEntity) {
         ResponseEntity<Collection<GithubOrganization>> response = restTemplate.exchange(githubProperties.getResource().getUserOrgsUri(),
-                HttpMethod.GET, authEntity, new ParameterizedTypeReference<Collection<GithubOrganization>>(){});
+                HttpMethod.GET, authEntity, new ParameterizedTypeReference<>(){});
         return response.getBody();
     }
 }
