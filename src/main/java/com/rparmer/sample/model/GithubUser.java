@@ -1,37 +1,37 @@
 package com.rparmer.sample.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-public class GithubUserDetails {
+public class GithubUser {
 
-    @SerializedName("login")
-    private String login;
+    @JsonProperty("login")
+    private String username;
 
-    @SerializedName("name")
+    @JsonProperty("name")
     private String name;
 
-    @SerializedName("email")
+    @JsonProperty("email")
     private String email;
 
-    @SerializedName("type")
+    @JsonProperty("type")
     private String type;
 
-    @SerializedName("company")
+    @JsonProperty("company")
     private String company;
 
-    @SerializedName("avatar_url")
+    @JsonProperty("avatar_url")
     private String avatarUrl;
 
-    @SerializedName("organizations_url")
+    @JsonProperty("organizations_url")
     private String organizationsUrl;
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

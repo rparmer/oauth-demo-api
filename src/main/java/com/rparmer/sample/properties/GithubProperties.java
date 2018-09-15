@@ -11,6 +11,7 @@ public class GithubProperties {
 
     public static class Resource {
         private String userInfoUri;
+        private String userOrgsUri;
 
         public String getUserInfoUri() {
             return userInfoUri;
@@ -18,6 +19,14 @@ public class GithubProperties {
 
         public void setUserInfoUri(String userInfoUri) {
             this.userInfoUri = userInfoUri;
+        }
+
+        public String getUserOrgsUri() {
+            return userOrgsUri;
+        }
+
+        public void setUserOrgsUri(String userOrgsUri) {
+            this.userOrgsUri = userOrgsUri;
         }
     }
 
