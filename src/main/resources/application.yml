@@ -1,12 +1,11 @@
 server:
   port: 8888
-security:
-  oauth2:
-    client:
-      clientId: 7e110ff6371f99282d05
-      clientSecret: c5f14b040ef65364d5ddb7d3b5631bcc705b59cf
-      accessTokenUri: https://github.com/login/oauth/access_token
-      userAuthorizationUri: https://github.com/login/oauth/authorize
-      clientAuthenticationScheme: form
-    resource:
-      userInfoUri: https://api.github.com/user
+github:
+  client:
+    clientId: 7e110ff6371f99282d05
+    clientSecret: c5f14b040ef65364d5ddb7d3b5631bcc705b59cf
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user

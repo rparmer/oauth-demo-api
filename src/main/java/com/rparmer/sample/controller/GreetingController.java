@@ -11,20 +11,20 @@ import java.util.Map;
 @RestController
 public class GreetingController {
 
-    @GetMapping("/hello")
-    public String getNamedGreeting(Principal user) {
-        return String.format("Hello %s", user.getName());
-    }
+	@GetMapping("/hello")
+	public String getNamedGreeting(Principal user) {
+		return String.format("Hello %s!!!", user.getName());
+	}
 
-    @GetMapping("/user")
-    public Principal user(Principal principal) {
-        return principal;
-    }
+	@GetMapping("/user")
+	public Principal user(Principal principal) {
+		return principal;
+	}
 
-    @GetMapping("/user/details")
-    public String userDetails(OAuth2Authentication authentication) {
-        Map<String, String> details = (Map<String, String>) authentication.getUserAuthentication().getDetails();
-        return new Gson().toJson(details);
-    }
+	@GetMapping("/user/details")
+	public String userDetails(OAuth2Authentication authentication) {
+		Map<String, String> details = (Map<String, String>) authentication.getUserAuthentication().getDetails();
+		return new Gson().toJson(details);
+	}
 
 }
