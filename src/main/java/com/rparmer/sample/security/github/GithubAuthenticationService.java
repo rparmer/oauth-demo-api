@@ -58,6 +58,16 @@ public class GithubAuthenticationService {
         return authentication;
     }
 
+    public String getAuthorizationUrl() {
+        return String.format("%s?client_id=%s&redirect_uri=http://localhost:8080/github/callback",
+                githubProperties.getClient().getUserAuthorizationUri(), githubProperties.getClient().getClientId());
+    }
+
+    public String getAccessTokenUrl(String code) {
+        return String.format("%s?client_id=%s&client_secret=%s&code=%s", githubProperties.getClient().getAccessTokenUri(),
+                githubProperties.getClient().getClientId(), githubProperties.getClient().getClientSecret(), code);
+    }
+
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<GithubOrganization> orgs) {
         Collection<GrantedAuthority> authorities = new HashSet<>();
         orgs.forEach(org -> authorities.add(new SimpleGrantedAuthority(org.getName())));
@@ -66,7 +76,7 @@ public class GithubAuthenticationService {
 
     private Collection<GithubOrganization> getOrganizations(HttpEntity authEntity) {
         ResponseEntity<Collection<GithubOrganization>> response = restTemplate.exchange(githubProperties.getResource().getUserOrgsUri(),
-                HttpMethod.GET, authEntity, new ParameterizedTypeReference<>(){});
+                HttpMethod.GET, authEntity, new ParameterizedTypeReference<Collection<GithubOrganization>>(){});
         return response.getBody();
     }
 }

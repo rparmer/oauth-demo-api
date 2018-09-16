@@ -7,7 +7,47 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "github")
 public class GithubProperties {
 
+    private Client client = new Client();
     private Resource resource = new Resource();
+
+    public static class Client {
+        private String clientId;
+        private String clientSecret;
+        private String accessTokenUri;
+        private String userAuthorizationUri;
+
+        public String getClientId() {
+            return clientId;
+        }
+
+        public void setClientId(String clientId) {
+            this.clientId = clientId;
+        }
+
+        public String getClientSecret() {
+            return clientSecret;
+        }
+
+        public void setClientSecret(String clientSecret) {
+            this.clientSecret = clientSecret;
+        }
+
+        public String getAccessTokenUri() {
+            return accessTokenUri;
+        }
+
+        public void setAccessTokenUri(String accessTokenUri) {
+            this.accessTokenUri = accessTokenUri;
+        }
+
+        public String getUserAuthorizationUri() {
+            return userAuthorizationUri;
+        }
+
+        public void setUserAuthorizationUri(String userAuthorizationUri) {
+            this.userAuthorizationUri = userAuthorizationUri;
+        }
+    }
 
     public static class Resource {
         private String userInfoUri;
@@ -28,6 +68,14 @@ public class GithubProperties {
         public void setUserOrgsUri(String userOrgsUri) {
             this.userOrgsUri = userOrgsUri;
         }
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Resource getResource() {
