@@ -3,6 +3,7 @@ package com.rparmer.sample.controller;
 import com.rparmer.sample.model.GithubCredentials;
 import com.rparmer.sample.security.github.GithubAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +29,10 @@ public class GithubController {
     }
 
     @GetMapping("/callback")
-    public GithubCredentials callback(@RequestParam("code") String code) {
-        GithubCredentials credentials = restTemplate.postForObject(githubAuthenticationService.getAccessTokenUrl(code), null, GithubCredentials.class);
+    public ResponseEntity<String> callback(@RequestParam("code") String code) {
+//        GithubCredentials credentials = restTemplate.postForObject(githubAuthenticationService.getAccessTokenUrl(code), null, GithubCredentials.class);
+        ResponseEntity<String> credentials = restTemplate.postForEntity(githubAuthenticationService.getAccessTokenUrl(code), null, String.class);
+        System.out.println(credentials);
         return credentials;
 
     }

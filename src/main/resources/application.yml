@@ -6,6 +6,7 @@ github:
     clientSecret: c5f14b040ef65364d5ddb7d3b5631bcc705b59cf
     accessTokenUri: https://github.com/login/oauth/access_token
     userAuthorizationUri: https://github.com/login/oauth/authorize
+    scopes: user read:org
   resource:
     userInfoUri: https://api.github.com/user
     userOrgsUri: https://api.github.com/user/orgs

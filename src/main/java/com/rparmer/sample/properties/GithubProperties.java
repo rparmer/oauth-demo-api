@@ -15,6 +15,7 @@ public class GithubProperties {
         private String clientSecret;
         private String accessTokenUri;
         private String userAuthorizationUri;
+        private String scopes;
 
         public String getClientId() {
             return clientId;
@@ -46,6 +47,14 @@ public class GithubProperties {
 
         public void setUserAuthorizationUri(String userAuthorizationUri) {
             this.userAuthorizationUri = userAuthorizationUri;
+        }
+
+        public String getScopes() {
+            return scopes;
+        }
+
+        public void setScopes(String scopes) {
+            this.scopes = scopes;
         }
     }
 

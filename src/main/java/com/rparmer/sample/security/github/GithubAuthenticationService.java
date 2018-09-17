@@ -59,8 +59,8 @@ public class GithubAuthenticationService {
     }
 
     public String getAuthorizationUrl() {
-        return String.format("%s?client_id=%s&redirect_uri=http://localhost:8080/github/callback",
-                githubProperties.getClient().getUserAuthorizationUri(), githubProperties.getClient().getClientId());
+        return String.format("%s?client_id=%s&scope=%s&redirect_uri=http://localhost:8080/github/callback",
+                githubProperties.getClient().getUserAuthorizationUri(), githubProperties.getClient().getClientId(), githubProperties.getClient().getScopes());
     }
 
     public String getAccessTokenUrl(String code) {
