@@ -3,6 +3,7 @@ package com.rparmer.sample.security.config;
 import com.rparmer.sample.properties.AuthProperties;
 import com.rparmer.sample.security.github.GithubAuthenticationFilter;
 import com.rparmer.sample.security.github.GithubAuthenticationSuccessHandler;
+import com.rparmer.sample.security.github.GithubRedirectStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;

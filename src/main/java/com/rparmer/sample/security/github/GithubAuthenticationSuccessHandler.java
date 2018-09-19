@@ -19,13 +19,18 @@ public class GithubAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     @Autowired
     private ObjectMapper mapper;
 
+    public GithubAuthenticationSuccessHandler() {
+        super();
+        super.setTargetUrlParameter("redirectUrl");
+        super.setRedirectStrategy(new GithubRedirectStrategy());
+    }
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
         GithubCredentials credentials = new GithubCredentials(details.getTokenType(), details.getTokenValue());
-        response.getWriter().write(mapper.writeValueAsString(credentials));
-        response.getWriter().flush();
-        response.getWriter().close();
+        response.addHeader("X-Token-Type", credentials.getTokenType());
+        response.addHeader("X-Access-Token", credentials.getAccessToken());
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

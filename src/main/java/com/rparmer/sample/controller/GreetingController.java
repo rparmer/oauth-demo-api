@@ -12,8 +12,8 @@ import java.security.Principal;
 @RequestMapping("/greeting")
 public class GreetingController {
 
-    @GetMapping("/hello")
-    public String getNamedGreeting(Authentication authentication) {
+    @GetMapping("/secured")
+    public String secured(Authentication authentication) {
         return String.format("Hello %s", ((GithubUser) authentication.getDetails()).getName());
     }
 
